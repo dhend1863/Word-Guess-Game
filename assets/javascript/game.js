@@ -1,1 +1,1 @@
-$('.carousel').carousel()
+alert("Test");
