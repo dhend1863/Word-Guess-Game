@@ -26,13 +26,13 @@ function startGame() {
     blanksAndSuccesses = [];
 
     // enter blanks and successes
-    var hyphenword = "";
-    for (var i = 0; i < numBlanks; i++) {
-        hyphenword += " _ "
+
+    for (var i = 0; i < numBlanks; i++){
+        blanksAndSuccesses.push("_");
     }
 
     // CHANGE HTML TO REFLECT ROUND CONDITIONS
-    document.getElementById("wordToGuess").innerHTML = hyphenword;
+    document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
     document.getElementById("numGuesses").innerHTML = guessesLeft;
     document.getElementById("winCounter").innerHTML = winCount;
     document.getElementById("lossCounter").innerHTML = lossCount;
@@ -48,12 +48,9 @@ function startGame() {
 
 function checkLetters(letter) {
 
-    
-
     var isLetterInWord = false;
-
-    for (var i = 0; i < numBlanks; i++) {
-        if (selectedWord[i] == letter) {
+    for (var i=0; i<numBlanks; i++) {
+        if(selectedWord[i] == letter) {
             isLetterInWord = true;
 
         }
@@ -101,6 +98,32 @@ function checkLetters(letter) {
 
 function roundComplete(){
     console.log("Win Count: " + winCount + " | Loss Count: " + lossCount + " | Guesses Left " + guessesLeft);
+
+    document.getElementById("numGuesses").innerHTML = guessesLeft;
+    document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
+    document.getElementById("wrongGuesses").innerHTML = wrongLetters.join (" ");
+
+    if (lettersinWord.toString() == blanksAndSuccesses.toString()) {
+        winCount++;
+        alert("You Won!");
+
+        document.getElementById("winCounter").innerHTML = winCount;
+        
+        startGame();
+    }
+
+    else if (guessesLeft == 0) {
+        lossCount++;
+        alert("You lost!");
+
+    }
+    
+    document.getElementById("lossCounter").innerHTML = lossCount;
+
+    startGame();
+
+    
+
 
 }
 
