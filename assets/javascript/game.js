@@ -1,7 +1,7 @@
 // GLOBAL VARIABLES
 // ===============================================================================================
 
-var wordOptions = ["priest holmes", "tony gonzales", "mike sweeney", "george brett", "satchel paige", "buck oneill", "patrick mahomes", "len dawson", "alex gordon", "tom watson"];
+var wordOptions = ["holmes", "gonzales", "sweeney", "brett", "yost", "reid", "mahomes", "dawson", "gordon", "watson", "perez"];
 var selectedWord = "";
 var numBlanks = 0;
 var letterGuessed = [];
@@ -62,7 +62,18 @@ function checkLetters(letter) {
     }
 }
 
+function checkLetters(letter) {
+    alert(letter);
+    
+    var isLetterInWord = false;
 
+    for (var i=0; i<numBlanks; i++){
+        if(selectedWord[i] == letter) {
+            isLetterInWord = true;
+
+        }
+    }
+}
 
 
 // ===============================================================================================
@@ -71,6 +82,15 @@ function checkLetters(letter) {
 // initiates the code 
 
 startGame();
+
+// Register Key Clicks
+
+document.onkeyup = function(event) {
+    var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+    checkLetters(letterGuessed);
+
+    console.log(letterGuessed);
+}
 
 
 
