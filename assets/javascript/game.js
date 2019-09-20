@@ -91,9 +91,18 @@ function checkLetters(letter) {
    
     else {
         wrongLetters.push(letter);
-        numGuesses--
+        guessesLeft--
     }
- }
+
+    console.log(blanksAndSuccesses);
+
+
+}
+
+function roundComplete(){
+    console.log("Win Count: " + winCount + " | Loss Count: " + lossCount + " | Guesses Left " + guessesLeft);
+
+}
 
 
 // ===============================================================================================
@@ -108,6 +117,7 @@ startGame();
 document.onkeyup = function(event) {
     var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
     checkLetters(letterGuessed);
+    roundComplete();
 
     console.log(letterGuessed);
 }
