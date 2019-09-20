@@ -5,7 +5,7 @@ var wordOptions = ["holmes", "gonzales", "sweeney", "brett", "yost", "reid", "ma
 var selectedWord = "";
 var numBlanks = 0;
 var letterGuessed = [];
-var blanksAndSuccess = [];
+var blanksAndSuccesses = [];
 var wrongLetters = [];
 
 // Game counters
@@ -48,7 +48,7 @@ function startGame() {
 
 function checkLetters(letter) {
 
-    alert(letter);
+    
 
     var isLetterInWord = false;
 
@@ -60,20 +60,40 @@ function checkLetters(letter) {
 
 
     }
+
+    for (var i=0; i<numBlanks; i++) {
+        if(selectedWord[i] == letter) {
+            blanksAndSuccesses[i] == letter;
+        }
+    }
+
 }
 
 function checkLetters(letter) {
-    alert(letter);
+    
     
     var isLetterInWord = false;
 
     for (var i=0; i<numBlanks; i++){
         if(selectedWord[i] == letter) {
             isLetterInWord = true;
-
+            
         }
     }
-}
+
+    if(isLetterInWord) {
+        for (var i=0; i<numBlanks; i++) {
+            if(selectedWord[i] == letter) {
+                blanksAndSuccesses[i] = letter;
+            }
+        }
+    }
+   
+    else {
+        wrongLetters.push(letter);
+        numGuesses--
+    }
+ }
 
 
 // ===============================================================================================
