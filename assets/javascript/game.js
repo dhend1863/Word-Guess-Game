@@ -4,7 +4,6 @@
 var wordOptions = ["holmes", "gonzales", "sweeney", "brett", "yost", "reid", "mahomes", "dawson", "gordon", "watson", "perez"];
 var selectedWord = "";
 var numBlanks = 0;
-var letterGuessed = [];
 var blanksAndSuccesses = [];
 var wrongLetters = [];
 
@@ -27,7 +26,7 @@ function startGame() {
 
     // enter blanks and successes
 
-    for (var i = 0; i < numBlanks; i++){
+    for (var i=0; i<numBlanks; i++){
         blanksAndSuccesses.push("_");
     }
 
@@ -49,6 +48,7 @@ function startGame() {
 function checkLetters(letter) {
 
     var isLetterInWord = false;
+    
     for (var i=0; i<numBlanks; i++) {
         if(selectedWord[i] == letter) {
             isLetterInWord = true;
@@ -103,7 +103,7 @@ function roundComplete(){
     document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
     document.getElementById("wrongGuesses").innerHTML = wrongLetters.join (" ");
 
-    if (lettersinWord.toString() == blanksAndSuccesses.toString()) {
+    if (lettersinWord.toString() === blanksAndSuccesses.toString()) {
         winCount++;
         alert("You Won!");
 
@@ -112,15 +112,16 @@ function roundComplete(){
         startGame();
     }
 
-    else if (guessesLeft == 0) {
+    else if (guessesLeft === 0) {
         lossCount++;
         alert("You lost!");
 
+        document.getElementById("lossCounter").innerHTML = lossCount;
+
+        startGame();
     }
     
-    document.getElementById("lossCounter").innerHTML = lossCount;
-
-    startGame();
+    
 
     
 
@@ -137,13 +138,30 @@ startGame();
 
 // Register Key Clicks
 
+
+
 document.onkeyup = function(event) {
     var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
     checkLetters(letterGuessed);
-    roundComplete();
 
+      
+    roundComplete();
+    
+    
     console.log(letterGuessed);
+
+    
+
 }
+
+        
+
+    
+
+
+
+        
+
 
 
 
