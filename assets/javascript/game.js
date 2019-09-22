@@ -1,7 +1,7 @@
 // GLOBAL VARIABLES
 // ===============================================================================================
 
-var wordOptions = ["holmes", "gonzales", "sweeney", "brett", "yost", "reid", "mahomes", "dawson", "gordon", "watson", "perez"];
+var wordOptions = ["holmes", "gonzales", "sweeney", "brett", "yost", "reid", "mahomes", "dawson", "gordon", "watson", "perez", "kelce", "mondesi"];
 var selectedWord = "";
 var numBlanks = 0;
 var blanksAndSuccesses = [];
@@ -18,6 +18,8 @@ function startGame() {
     selectedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
     lettersinWord = selectedWord.split("");
     numBlanks = lettersinWord.length;
+
+
 
     // reset
     guessesLeft = 9;
@@ -50,7 +52,7 @@ function checkLetters(letter) {
     var isLetterInWord = false;
     
     for (var i=0; i<numBlanks; i++) {
-        if(selectedWord[i] == letter) {
+        if(selectedWord[i] === letter) {
             isLetterInWord = true;
 
         }
@@ -59,7 +61,7 @@ function checkLetters(letter) {
     }
 
     for (var i=0; i<numBlanks; i++) {
-        if(selectedWord[i] == letter) {
+        if(selectedWord[i] === letter) {
             blanksAndSuccesses[i] == letter;
         }
     }
@@ -72,7 +74,7 @@ function checkLetters(letter) {
     var isLetterInWord = false;
 
     for (var i=0; i<numBlanks; i++){
-        if(selectedWord[i] == letter) {
+        if(selectedWord[i] === letter) {
             isLetterInWord = true;
             
         }
@@ -80,7 +82,7 @@ function checkLetters(letter) {
 
     if(isLetterInWord) {
         for (var i=0; i<numBlanks; i++) {
-            if(selectedWord[i] == letter) {
+            if(selectedWord[i] === letter) {
                 blanksAndSuccesses[i] = letter;
             }
         }
@@ -105,7 +107,7 @@ function roundComplete(){
 
     if (lettersinWord.toString() === blanksAndSuccesses.toString()) {
         winCount++;
-        alert("You Won!");
+        alert("Winner Winner Chicken Dinner!");
 
         document.getElementById("winCounter").innerHTML = winCount;
         
@@ -114,7 +116,7 @@ function roundComplete(){
 
     else if (guessesLeft === 0) {
         lossCount++;
-        alert("You lost!");
+        alert("You lost no chicken for you!");
 
         document.getElementById("lossCounter").innerHTML = lossCount;
 
@@ -153,6 +155,9 @@ document.onkeyup = function(event) {
     
 
 }
+
+
+
 
         
 
